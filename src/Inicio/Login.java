@@ -44,10 +44,10 @@ public class Login extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         btnEntrada = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -74,41 +74,37 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/city.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/img/city.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 370));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 250, 320));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 28)); // NOI18N
         jLabel2.setText("Iniciar sesión ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 330, 70));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 330, 50));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel3.setText("Contraseña");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 150, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 150, 30));
 
         txtUsuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
         txtUsuario.setText("Ingresa el usuario ");
         txtUsuario.setBorder(null);
-        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 330, -1));
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 330, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 330, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 330, 10));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel4.setText("Usuario ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, 30));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel5.setText("Usuario ");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 150, 30));
 
         txtContrasena.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtContrasena.setForeground(new java.awt.Color(204, 204, 204));
         txtContrasena.setText("jPasswordField1");
         txtContrasena.setBorder(null);
-        jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 330, -1));
+        jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 330, -1));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 330, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 330, 10));
 
         btnEntrada.setBackground(new java.awt.Color(0, 134, 190));
         btnEntrada.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -119,7 +115,14 @@ public class Login extends javax.swing.JFrame {
                 btnEntradaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 330, -1));
+        jPanel2.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 330, -1));
+
+        jLabel5.setBackground(new java.awt.Color(0, 134, 190));
+        jLabel5.setFont(new java.awt.Font("Cambria Math", 1, 27)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 134, 190));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agencia-de-viajes (5).png"))); // NOI18N
+        jLabel5.setText("Viaja Seguro");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,16 +134,14 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-  String usuario = txtUsuario.getText();
+        String usuario = txtUsuario.getText();
         String contrasena = new String(txtContrasena.getPassword());
 
         Connection conn = ConexionMYSQL.conectar();
@@ -168,8 +169,8 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error en la conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-   
-// TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnEntradaActionPerformed
 
     /**

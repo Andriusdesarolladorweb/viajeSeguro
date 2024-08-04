@@ -74,13 +74,15 @@ public class RegistroUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlContactos.setBackground(new java.awt.Color(51, 204, 255));
+        pnlContactos.setBackground(new java.awt.Color(0, 134, 190));
         pnlContactos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del conctato", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        pnlContactos.setForeground(new java.awt.Color(255, 255, 255));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtNombre.setBackground(new java.awt.Color(51, 204, 255));
+        txtNombre.setBackground(new java.awt.Color(0, 134, 190));
         txtNombre.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Ingresa el nombre");
         txtNombre.setBorder(null);
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -97,8 +99,9 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Apellido");
 
-        txtApellido.setBackground(new java.awt.Color(51, 204, 255));
+        txtApellido.setBackground(new java.awt.Color(0, 134, 190));
         txtApellido.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtApellido.setForeground(new java.awt.Color(255, 255, 255));
         txtApellido.setText("Ingresa el apellido");
         txtApellido.setBorder(null);
 
@@ -106,13 +109,15 @@ public class RegistroUsuarios extends javax.swing.JFrame {
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtUsuario.setBackground(new java.awt.Color(51, 204, 255));
+        txtUsuario.setBackground(new java.awt.Color(0, 134, 190));
         txtUsuario.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario.setText("Ingresa el usuario:");
         txtUsuario.setBorder(null);
 
-        txtcontraseña.setBackground(new java.awt.Color(51, 204, 255));
+        txtcontraseña.setBackground(new java.awt.Color(0, 134, 190));
         txtcontraseña.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtcontraseña.setForeground(new java.awt.Color(255, 255, 255));
         txtcontraseña.setText("Ingresa la contraseña:");
         txtcontraseña.setBorder(null);
         txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
