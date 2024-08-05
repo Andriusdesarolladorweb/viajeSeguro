@@ -149,13 +149,12 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
         pnlContactos.setLayout(pnlContactosLayout);
         pnlContactosLayout.setHorizontalGroup(
             pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContactosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlContactosLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlContactosLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlContactosLayout.createSequentialGroup()
                         .addGroup(pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,14 +166,15 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
                             .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 45, Short.MAX_VALUE))
+                    .addGroup(pnlContactosLayout.createSequentialGroup()
+                        .addGroup(pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlContactosLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 45, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContactosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(4, 4, 4)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlContactosLayout.setVerticalGroup(
             pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,9 +217,17 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombres", "Apellidos", "Telefono", "Correo"
+                "ID", "Identificacion", "Nombres", "Apellidos", "Aerolinea", "Destino", "Hora_de_salida", "Hora_de_llegada", "Estadp"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbltickes.setToolTipText("Listado de contactos");
         tbltickes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -427,41 +435,44 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarDatos(String valorBuscar) {
-        String consultaSQL = "SELECT * FROM  tickets_reservados WHERE CONCAT(Nombre,'',Apellido) LIKE '%" + valorBuscar + "%'";
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Identificacion");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Aerolinea");
-        modelo.addColumn("Destino");
-        modelo.addColumn("Hora_de_salida");
-        modelo.addColumn("Hora_de_llegada");
-        modelo.addColumn("Estado");
+       String consultaSQL = "SELECT * FROM tickets_reservados WHERE CONCAT(Nombre, ' ', Apellido) LIKE '%" + valorBuscar + "%'";
 
-        tbltickes.setModel(modelo);
-        //String consultaSQL = "SELECT * FROM tbl_usuarios ORDER BY id";
-        String data[] = new String[8];
-        Statement st;
-        try {
-            st = (Statement) cn.createStatement();
-            ResultSet rs = st.executeQuery(consultaSQL);
-            while (rs.next()) {
-                data[0] = rs.getString(1);
-                data[1] = rs.getString(2);
-                data[2] = rs.getString(3);
-                data[3] = rs.getString(4);
-                data[4] = rs.getString(5);
-                data[5] = rs.getString(6);
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                data[8] = rs.getString(9);
-                modelo.addRow(data);
-            }
-            tbltickes.setModel(modelo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + ex);
-        }
+DefaultTableModel modelo = new DefaultTableModel();
+modelo.addColumn("ID");
+modelo.addColumn("Identificacion");
+modelo.addColumn("Nombre");
+modelo.addColumn("Apellido");
+modelo.addColumn("Aerolinea");
+modelo.addColumn("Destino");
+modelo.addColumn("Hora_de_salida");
+modelo.addColumn("Hora_de_llegada");
+modelo.addColumn("Estado");
+
+tbltickes.setModel(modelo);
+
+// Asegúrate de que el tamaño del array `data` coincida con el número de columnas en el modelo
+String[] data = new String[9]; // Hay 9 columnas en el modelo
+Statement st;
+try {
+    st = cn.createStatement();
+    ResultSet rs = st.executeQuery(consultaSQL);
+    while (rs.next()) {
+        data[0] = rs.getString("ID"); // Usar nombres de columnas en lugar de índices
+        data[1] = rs.getString("Identificacion");
+        data[2] = rs.getString("Nombre");
+        data[3] = rs.getString("Apellido");
+        data[4] = rs.getString("Aerolinea");
+        data[5] = rs.getString("Destino");
+        data[6] = rs.getString("Hora_de_salida");
+        data[7] = rs.getString("Hora_de_llegada");
+        data[8] = rs.getString("Estado");
+        modelo.addRow(data);
+    }
+    tbltickes.setModel(modelo);
+} catch (SQLException ex) {
+    JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + ex.getMessage());
+}
+
     }
 
     private void limpiarCampos() {
