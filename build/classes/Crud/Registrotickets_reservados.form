@@ -110,6 +110,10 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="jSeparator7" min="-2" pref="330" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel4" min="-2" pref="150" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -129,7 +133,9 @@
                   <Component id="jLabel4" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jSeparator7" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="1" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" pref="30" max="-2" attributes="0"/>
@@ -137,7 +143,7 @@
                   <Component id="txtApellido" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtUsuario" min="-2" max="-2" attributes="0"/>
@@ -309,6 +315,13 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator6">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator7">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>

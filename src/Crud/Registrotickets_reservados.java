@@ -59,6 +59,7 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbltickes = new javax.swing.JTable();
@@ -145,6 +146,8 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
 
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
 
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout pnlContactosLayout = new javax.swing.GroupLayout(pnlContactos);
         pnlContactos.setLayout(pnlContactosLayout);
         pnlContactosLayout.setHorizontalGroup(
@@ -170,6 +173,9 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
                         .addGap(25, 45, Short.MAX_VALUE))
                     .addGroup(pnlContactosLayout.createSequentialGroup()
                         .addGroup(pnlContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlContactosLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlContactosLayout.createSequentialGroup()
                                 .addGap(4, 4, 4)
@@ -183,7 +189,9 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +199,7 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
                 .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,19 +341,23 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-
+    /*
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apellido) VALUES (?,?,?,?)";
+        String insertarSQL = "INSERT INTO  tickets_reservados ( Identificacion, Nombre, Apellido, Aerolinea,Destino, Hora_de_salida,Hora_de_llegada,Estado ) VALUES (?,?,?,?)";
         try {
-            PreparedStatement ps;
+           /* PreparedStatement ps;
             ps = (PreparedStatement) cn.prepareStatement(insertarSQL);
-            ps.setString(1, txtNombre.getText());
-            ps.setString(2, txtApellido.getText());
-            ps.setString(3, txtUsuario.getText());
-            ps.setString(4, txtcontraseña.getText());
+             ps.setString(1, txtIdentificacion.getText());
+       ps.setString(2, txtNombre.getText());
+            ps.setString(3, txtApellido.getText());
+            ps.setString(4, txtAerolinea.getText());
+            ps.setString(5, txtDestino.getText());
+            ps.setString(6, txtHora_de_salida.getText());
+             ps.setString(7, txtHora_de_llegada.getText());
+             ps.setString(8, txtEstadp.getText());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Registro realizado con exito.");
-
+            
             btnAgregar.setEnabled(true);
             mostrarDatos("");
             limpiarCampos();
@@ -353,10 +365,49 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Error al tratar de insertar los datos: " + ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
+*/
+
 
     private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcontraseñaActionPerformed
+
+    
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        String actualizarSQL = "UPDATE tickets_reservados SET Nombre='" + txtIdentificacione.getText()
+                +"',Nombre='" + txtNombre.getText()
+                + "', Apellido='" + txtApellido.getText()
+                + "', Aerolinea='" + txtAerolinea.getText()
+                + "', correo='" + txtDestino.getText()
+                + "' Hora_de_salida =" + txtHora_de_salida.getText();
+                + "' Hora_de_llegado =" + txtHora_de_llegado.getText();
+                + "' Estado =" + txtEstado.getText();
+                
+        try {
+            PreparedStatement ps;
+            ps = (PreparedStatement) cn.prepareStatement(actualizarSQL);
+            int indice = ps.executeUpdate();
+            if (indice > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Datos actualizados correctamente.");
+                btnActualizar.setEnabled(false);
+                btnCancelar.setEnabled(false);
+                btnAgregar.setEnabled(true);
+                mostrarDatos("");
+                limpiarCampos();
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Error al actualizar datos: " + ex);
+        }
+    }  
+     
+      private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        limpiarCampos();
+        mostrarDatos("");
+        btnActualizar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        btnAgregar.setEnabled(true);
+    }                                           
 
     /**
      * @param args the command line arguments
@@ -423,6 +474,7 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JPanel pnlContactos;
     private javax.swing.JMenuItem popEliminar;
     private javax.swing.JPopupMenu popMenu;
@@ -435,43 +487,43 @@ public class Registrotickets_reservados extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarDatos(String valorBuscar) {
-       String consultaSQL = "SELECT * FROM tickets_reservados WHERE CONCAT(Nombre, ' ', Apellido) LIKE '%" + valorBuscar + "%'";
+        String consultaSQL = "SELECT * FROM tickets_reservados WHERE CONCAT(Nombre, ' ', Apellido) LIKE '%" + valorBuscar + "%'";
 
-DefaultTableModel modelo = new DefaultTableModel();
-modelo.addColumn("ID");
-modelo.addColumn("Identificacion");
-modelo.addColumn("Nombre");
-modelo.addColumn("Apellido");
-modelo.addColumn("Aerolinea");
-modelo.addColumn("Destino");
-modelo.addColumn("Hora_de_salida");
-modelo.addColumn("Hora_de_llegada");
-modelo.addColumn("Estado");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Identificacion");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Aerolinea");
+        modelo.addColumn("Destino");
+        modelo.addColumn("Hora_de_salida");
+        modelo.addColumn("Hora_de_llegada");
+        modelo.addColumn("Estado");
 
-tbltickes.setModel(modelo);
+        tbltickes.setModel(modelo);
 
 // Asegúrate de que el tamaño del array `data` coincida con el número de columnas en el modelo
-String[] data = new String[9]; // Hay 9 columnas en el modelo
-Statement st;
-try {
-    st = cn.createStatement();
-    ResultSet rs = st.executeQuery(consultaSQL);
-    while (rs.next()) {
-        data[0] = rs.getString("ID"); // Usar nombres de columnas en lugar de índices
-        data[1] = rs.getString("Identificacion");
-        data[2] = rs.getString("Nombre");
-        data[3] = rs.getString("Apellido");
-        data[4] = rs.getString("Aerolinea");
-        data[5] = rs.getString("Destino");
-        data[6] = rs.getString("Hora_de_salida");
-        data[7] = rs.getString("Hora_de_llegada");
-        data[8] = rs.getString("Estado");
-        modelo.addRow(data);
-    }
-    tbltickes.setModel(modelo);
-} catch (SQLException ex) {
-    JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + ex.getMessage());
-}
+        String[] data = new String[9]; // Hay 9 columnas en el modelo
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(consultaSQL);
+            while (rs.next()) {
+                data[0] = rs.getString("ID"); // Usar nombres de columnas en lugar de índices
+                data[1] = rs.getString("Identificacion");
+                data[2] = rs.getString("Nombre");
+                data[3] = rs.getString("Apellido");
+                data[4] = rs.getString("Aerolinea");
+                data[5] = rs.getString("Destino");
+                data[6] = rs.getString("Hora_de_salida");
+                data[7] = rs.getString("Hora_de_llegada");
+                data[8] = rs.getString("Estado");
+                modelo.addRow(data);
+            }
+            tbltickes.setModel(modelo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + ex.getMessage());
+        }
 
     }
 
