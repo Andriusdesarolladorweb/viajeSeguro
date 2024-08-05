@@ -1,4 +1,5 @@
 package Crud;
+
 import BD.ConexionMYSQL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -12,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jquezada
  */
-public class RegistroUsuarios extends javax.swing.JFrame {
+public class Registrotickets_reservados extends javax.swing.JFrame {
 
     ConexionMYSQL con = new ConexionMYSQL();
     Connection cn = con.conectar();
@@ -20,15 +21,15 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form ContactosCRUD
      */
-    public RegistroUsuarios() {
+    public Registrotickets_reservados() {
         initComponents();
         this.setLocationRelativeTo(null);
         limpiarCampos();
         mostrarDatos("");
-        
+
         txtNombre.requestFocus();
-     //  btnActualizar.setEnabled(false);
-       // btnCancelar.setEnabled(false);
+        //  btnActualizar.setEnabled(false);
+        // btnCancelar.setEnabled(false);
         btnAgregar.setEnabled(true);
     }
 
@@ -60,7 +61,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblusuarios = new javax.swing.JTable();
+        tbltickes = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
 
@@ -210,8 +211,8 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de contactos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        tblusuarios.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        tblusuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tbltickes.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        tbltickes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -219,13 +220,13 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                 "ID", "Nombres", "Apellidos", "Telefono", "Correo"
             }
         ));
-        tblusuarios.setToolTipText("Listado de contactos");
-        tblusuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbltickes.setToolTipText("Listado de contactos");
+        tbltickes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblusuariosMouseClicked(evt);
+                tbltickesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblusuarios);
+        jScrollPane1.setViewportView(tbltickes);
 
         txtBuscar.setToolTipText("Escribir datos para realizar la busqueda");
         txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -286,7 +287,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "Se eliminara el registro, desea continuar?", "Eliminar Registro",
                 JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
-                String Borrar = "DELETE FROM empleados WHERE id='"+ "'";
+                String Borrar = "DELETE FROM empleados WHERE id='" + "'";
                 PreparedStatement ps;
                 ps = (PreparedStatement) cn.prepareStatement(Borrar);
                 int respuesta = ps.executeUpdate();
@@ -307,26 +308,26 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         } else {
             limpiarCampos();
             mostrarDatos("");
-           // btnActualizar.setEnabled(false);
+            // btnActualizar.setEnabled(false);
             //btnCancelar.setEnabled(false);
             btnAgregar.setEnabled(true);
         }
     }//GEN-LAST:event_popEliminarActionPerformed
 
-    private void tblusuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblusuariosMouseClicked
+    private void tbltickesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltickesMouseClicked
         this.btnAgregar.setEnabled(false);
-       // this.btnEditar.setEnabled(true);
+        // this.btnEditar.setEnabled(true);
         //this.btnActualizar.setEnabled(false);
-       //this.btnCancelar.setEnabled(true);
+        //this.btnCancelar.setEnabled(true);
         //this.btnEliminar.setEnabled(true);
-    }//GEN-LAST:event_tblusuariosMouseClicked
+    }//GEN-LAST:event_tbltickesMouseClicked
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apellido) VALUES (?,?,?,?)";
+        String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apellido) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps;
             ps = (PreparedStatement) cn.prepareStatement(insertarSQL);
@@ -336,7 +337,7 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
             ps.setString(4, txtcontraseña.getText());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Registro realizado con exito.");
-           
+
             btnAgregar.setEnabled(true);
             mostrarDatos("");
             limpiarCampos();
@@ -366,14 +367,22 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrotickets_reservados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrotickets_reservados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrotickets_reservados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrotickets_reservados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -387,7 +396,7 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new RegistroUsuarios().setVisible(true);
+                new Registrotickets_reservados().setVisible(true);
             }
         });
     }
@@ -409,7 +418,7 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
     private javax.swing.JPanel pnlContactos;
     private javax.swing.JMenuItem popEliminar;
     private javax.swing.JPopupMenu popMenu;
-    public javax.swing.JTable tblusuarios;
+    public javax.swing.JTable tbltickes;
     private javax.swing.JTextField txtApellido;
     public javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtNombre;
@@ -418,18 +427,21 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
     // End of variables declaration//GEN-END:variables
 
     private void mostrarDatos(String valorBuscar) {
-        String consultaSQL = "SELECT * FROM  usuarios WHERE CONCAT(nombre,'',apellido) LIKE '%" + valorBuscar + "%'";
+        String consultaSQL = "SELECT * FROM  tickets_reservados WHERE CONCAT(Nombre,'',Apellido) LIKE '%" + valorBuscar + "%'";
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
+        modelo.addColumn("Identificacion");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
-        modelo.addColumn("Usuraio");
-        modelo.addColumn("Contrasena");
-        
+        modelo.addColumn("Aerolinea");
+        modelo.addColumn("Destino");
+        modelo.addColumn("Hora_de_salida");
+        modelo.addColumn("Hora_de_llegada");
+        modelo.addColumn("Estado");
 
-        tblusuarios.setModel(modelo);
+        tbltickes.setModel(modelo);
         //String consultaSQL = "SELECT * FROM tbl_usuarios ORDER BY id";
-        String data[] = new String[5];
+        String data[] = new String[8];
         Statement st;
         try {
             st = (Statement) cn.createStatement();
@@ -440,21 +452,22 @@ String insertarSQL = "INSERT INTO  usuarios ( usuario, contrasena, nombre, apell
                 data[2] = rs.getString(3);
                 data[3] = rs.getString(4);
                 data[4] = rs.getString(5);
-                
-
+                data[5] = rs.getString(6);
+                data[6] = rs.getString(7);
+                data[7] = rs.getString(8);
+                data[8] = rs.getString(9);
                 modelo.addRow(data);
             }
-            tblusuarios.setModel(modelo);
+            tbltickes.setModel(modelo);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + ex);
         }
     }
 
     private void limpiarCampos() {
-        
+
         txtNombre.setText("");
         txtApellido.setText("");
-      
-        
+
     }
 }
