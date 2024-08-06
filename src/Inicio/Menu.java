@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Inicio;
-import Crud.Registrotickets_reservados;
+import Crud.Tikes;
 
 
 
@@ -59,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/verificar.png"))); // NOI18N
-        jButton6.setText("Registro tikes");
+        jButton6.setText("Registro tickets");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -172,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      new Registrotickets_reservados().setVisible(true);
+      new Tikes().setVisible(true);
         this.dispose();// 
     }//GEN-LAST:event_jButton6ActionPerformed
 
