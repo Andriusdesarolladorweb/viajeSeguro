@@ -4,6 +4,8 @@
  */
 package Inicio;
 import Crud.Tikes;
+import Crud.RutasAereas;
+
 
 
 
@@ -178,11 +180,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
           new Login().setVisible(true);
-        this.dispose();// 
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+         new RutasAereas().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

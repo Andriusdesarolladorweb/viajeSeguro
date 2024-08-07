@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import BD.dbTickest;
+import Inicio.Login;
 
 /**
  *
@@ -67,8 +68,8 @@ public class Tikes extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jpRutas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbltickes = new javax.swing.JTable();
@@ -186,18 +187,18 @@ public class Tikes extends javax.swing.JFrame {
             }
         });
 
-        btnAgregar1.setBackground(new java.awt.Color(255, 51, 51));
-        btnAgregar1.setText("Cerrar Sesion");
-        btnAgregar1.setToolTipText("Guardar datos del contacto");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
-            }
-        });
-
         txtId.setBackground(new java.awt.Color(0, 134, 190));
         txtId.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         txtId.setBorder(null);
+
+        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
+        jButton3.setText("Cerrar sesiòn");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFormularioLayout = new javax.swing.GroupLayout(pnlFormulario);
         pnlFormulario.setLayout(pnlFormularioLayout);
@@ -208,11 +209,11 @@ public class Tikes extends javax.swing.JFrame {
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlFormularioLayout.createSequentialGroup()
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 206, Short.MAX_VALUE))
             .addGroup(pnlFormularioLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +297,7 @@ public class Tikes extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
@@ -464,24 +465,38 @@ public class Tikes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtHorallegadaActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-           var idc = txtId.getText();
-                   int fila = tbltickes.getSelectedRow();
-            try{
-            if(fila < 0){
-                JOptionPane.showMessageDialog(rootPane, "Cleinte no tiene selecionado");
-                limpiarCampos();
-            }else{
-                
-                String sql = "delete from ickets_reservados where ID="+idc;
-                    }}
-            catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Error al tratar de insertar los datos: " + e);
+         
+         String idc = txtId.getText();
+        int fila = tbltickes.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente no tiene seleccionado");
+            limpiarCampos();
+        } else {
+            try {
+                ConexionMYSQL con = new ConexionMYSQL();
+                Connection cn = con.conectar();
+                String sql = "DELETE FROM tickets_reservados WHERE ID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, Integer.parseInt(idc));
+                int rs = pst.executeUpdate();
+                if (rs > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Registro eliminado con éxito.");
+                    mostrarDatos(""); // Recargar la tabla para reflejar los cambios
+                    limpiarCampos(); // Limpiar los campos después de la eliminación
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar el registro.");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Error al tratar de eliminar el registro: " + ex);
+            }
         }
+    
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new Login().setVisible(true);
+        this.dispose();//
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,8 +600,8 @@ public class Tikes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnAgregar;
-    public javax.swing.JButton btnAgregar1;
     public javax.swing.JButton btnEliminar;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpRutas;
