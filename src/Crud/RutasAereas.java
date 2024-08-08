@@ -1,4 +1,5 @@
 package Crud;
+
 import BD.ConexionMYSQL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Inicio.Login;
 
 /**
  *
@@ -25,10 +27,10 @@ public class RutasAereas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         limpiarCampos();
         mostrarDatos("");
-        
+
         txtAerolinea.requestFocus();
-     //  btnActualizar.setEnabled(false);
-       // btnCancelar.setEnabled(false);
+        //  btnActualizar.setEnabled(false);
+        // btnCancelar.setEnabled(false);
         btnAgregar.setEnabled(true);
     }
 
@@ -57,15 +59,14 @@ public class RutasAereas extends javax.swing.JFrame {
         txtDestino = new javax.swing.JTextField();
         txtHoraSalida = new javax.swing.JTextField();
         txtAerolinea = new javax.swing.JTextField();
-        txtCosto = new javax.swing.JTextField();
-        btnAgregar1 = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
-        btnActualizar1 = new javax.swing.JButton();
+        txtCosto = new javax.swing.JTextField();
+        btnEliminar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jpRutas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRutas = new javax.swing.JTable();
-        txtBuscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
 
         popEliminar.setText("Eliminar registro");
         popEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,18 +139,10 @@ public class RutasAereas extends javax.swing.JFrame {
             }
         });
 
-        txtCosto.setBackground(new java.awt.Color(204, 204, 204));
-        txtCosto.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        txtCosto.setBorder(null);
-
-        btnAgregar1.setBackground(new java.awt.Color(255, 51, 51));
-        btnAgregar1.setText("Cerrar Sesion");
-        btnAgregar1.setToolTipText("Guardar datos del contacto");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
-            }
-        });
+        txtId.setBackground(new java.awt.Color(0, 134, 190));
+        txtId.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtId.setForeground(new java.awt.Color(0, 134, 190));
+        txtId.setBorder(null);
 
         btnActualizar.setText("Actualizar");
         btnActualizar.setToolTipText("Guardar datos del contacto");
@@ -159,11 +152,25 @@ public class RutasAereas extends javax.swing.JFrame {
             }
         });
 
-        btnActualizar1.setText("Limpiar Campos");
-        btnActualizar1.setToolTipText("Guardar datos del contacto");
-        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+        txtCosto.setBackground(new java.awt.Color(204, 204, 204));
+        txtCosto.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        txtCosto.setBorder(null);
+
+        btnEliminar.setBackground(new java.awt.Color(255, 51, 51));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setToolTipText("Guardar datos del contacto");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
+        jButton3.setText("Cerrar sesiòn");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -177,15 +184,18 @@ public class RutasAereas extends javax.swing.JFrame {
                     .addGroup(pnlFormularioLayout.createSequentialGroup()
                         .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlFormularioLayout.createSequentialGroup()
+                                .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblHoraDeSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlFormularioLayout.createSequentialGroup()
                                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblAsientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAsientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblHoraDeSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(60, Short.MAX_VALUE))
                     .addGroup(pnlFormularioLayout.createSequentialGroup()
                         .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,26 +205,20 @@ public class RutasAereas extends javax.swing.JFrame {
                                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblAerolinea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAerolinea, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlFormularioLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(txtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlFormularioLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblHoraDeLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(lblHoraDeLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(pnlFormularioLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlFormularioLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormularioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFormularioLayout.setVerticalGroup(
@@ -233,26 +237,31 @@ public class RutasAereas extends javax.swing.JFrame {
                     .addComponent(lblAsientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAsientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFormularioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlFormularioLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblHoraDeSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53))
         );
 
         jpRutas.setBackground(new java.awt.Color(255, 255, 255));
@@ -275,40 +284,18 @@ public class RutasAereas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblRutas);
 
-        txtBuscar.setToolTipText("Escribir datos para realizar la busqueda");
-        txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-
-        btnBuscar.setToolTipText("Buscar contacto");
-
         javax.swing.GroupLayout jpRutasLayout = new javax.swing.GroupLayout(jpRutas);
         jpRutas.setLayout(jpRutasLayout);
         jpRutasLayout.setHorizontalGroup(
             jpRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRutasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jpRutasLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
         jpRutasLayout.setVerticalGroup(
             jpRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpRutasLayout.createSequentialGroup()
-                .addGroup(jpRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtBuscar)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(330, Short.MAX_VALUE))
+            .addGroup(jpRutasLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,7 +326,7 @@ public class RutasAereas extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(rootPane, "Se eliminara el registro, desea continuar?", "Eliminar Registro",
                 JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             try {
-                String Borrar = "DELETE FROM empleados WHERE id='"+ "'";
+                String Borrar = "DELETE FROM empleados WHERE id='" + "'";
                 PreparedStatement ps;
                 ps = (PreparedStatement) cn.prepareStatement(Borrar);
                 int respuesta = ps.executeUpdate();
@@ -360,33 +347,35 @@ public class RutasAereas extends javax.swing.JFrame {
         } else {
             limpiarCampos();
             mostrarDatos("");
-           // btnActualizar.setEnabled(false);
+            // btnActualizar.setEnabled(false);
             //btnCancelar.setEnabled(false);
             btnAgregar.setEnabled(true);
         }
     }//GEN-LAST:event_popEliminarActionPerformed
 
     private void tblRutasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRutasMouseClicked
-        this.btnAgregar.setEnabled(false);
-       // this.btnEditar.setEnabled(true);
-        //this.btnActualizar.setEnabled(false);
-       //this.btnCancelar.setEnabled(true);
-        //this.btnEliminar.setEnabled(true);
+      int fila = this.tblRutas.getSelectedRow();
+          this.txtId.setText(this.tblRutas.getValueAt(fila,  0).toString());
+        this.txtAerolinea.setText(this.tblRutas.getValueAt(fila, 2).toString());
+       this.txtDestino.setText(this.tblRutas.getValueAt(fila, 3).toString());
+       this.txtHoraSalida.setText(this.tblRutas.getValueAt(fila, 4).toString());
+        this.txtCosto.setText(this.tblRutas.getValueAt(fila, 5).toString());
+       this.txtHoraLlegada.setText(this.tblRutas.getValueAt(fila, 6).toString());
+      
+       
     }//GEN-LAST:event_tblRutasMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String insertarSQL = "INSERT INTO  vuelos ( Asientos_totales, Asientos_disponibles, Aerolinea, Destino, Hora_de_Salida,"
-                + " Hora_de_Llegada, Costo)VALUES (?,?,?,?,?,?,?)";
+        String insertarSQL = "INSERT INTO  vuelos (  Aerolinea, Destino, Hora_de_salida, Hora_de_llegada, Costo)VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps;
             ps = (PreparedStatement) cn.prepareStatement(insertarSQL);
-            ps.setString(1, txtAsientosTotales.getText());
-            ps.setString(2, txtAsientosTotales.getText());
-            ps.setString(3, txtAerolinea.getText());
-            ps.setString(4, txtDestino.getText());
-            ps.setString(4, txtHoraSalida.getText());
+
+            ps.setString(1, txtAerolinea.getText());
+            ps.setString(2, txtDestino.getText());
+            ps.setString(3, txtHoraSalida.getText());
             ps.setString(4, txtHoraLlegada.getText());
-            ps.setString(4, txtCosto.getText());
+            ps.setString(5, txtCosto.getText());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Registro realizado con exito.");
 
@@ -398,25 +387,62 @@ public class RutasAereas extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+try {
+            PreparedStatement ps =cn.prepareStatement("Update vuelos  set Aerolinea='"+txtAerolinea.getText()+"', Destino ='"+txtDestino.getText()+"', Aerolinea ='"+txtAerolinea.getText()+"',Destino ='"+txtDestino.getText()+"', Hora_de_salida ='"+txtHoraSalida.getText()+"', Hora_de_llegada ='"+txtHoraLlegada.getText()+"',  Costo ='"+txtCosto.getText()+"' where ID='"+txtId.getText()+ "'");
+            
+            int  indice =ps.executeUpdate();
+            
+            if(indice>0){
+               JOptionPane.showMessageDialog(rootPane, "Actualizacion realizada con exito.");
+                mostrarDatos("");
+                 limpiarCampos();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "no");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Error al tratar de insertar los datos: " + ex);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtAerolineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAerolineaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAerolineaActionPerformed
 
-    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizar1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        String idc = txtId.getText();
+        int fila = tblRutas.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente no tiene seleccionado");
+            limpiarCampos();
+        } else {
+            try {
+                ConexionMYSQL con = new ConexionMYSQL();
+                Connection cn = con.conectar();
+                String sql = "DELETE FROM vuelos WHERE ID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, Integer.parseInt(idc));
+                int rs = pst.executeUpdate();
+                if (rs > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Registro eliminado con éxito.");
+                    mostrarDatos(""); // Recargar la tabla para reflejar los cambios
+                    limpiarCampos(); // Limpiar los campos después de la eliminación
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar el registro.");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Error al tratar de eliminar el registro: " + ex);
+            }
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new Login().setVisible(true);
+        this.dispose();//
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,10 +513,9 @@ public class RutasAereas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
-    public javax.swing.JButton btnActualizar1;
     public javax.swing.JButton btnAgregar;
-    public javax.swing.JButton btnAgregar1;
-    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnEliminar;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpRutas;
@@ -506,29 +531,26 @@ public class RutasAereas extends javax.swing.JFrame {
     public javax.swing.JTable tblRutas;
     private javax.swing.JTextField txtAerolinea;
     private javax.swing.JTextField txtAsientosTotales;
-    public javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtHoraLlegada;
     private javax.swing.JTextField txtHoraSalida;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 
     private void mostrarDatos(String valorBuscar) {
         String consultaSQL = "SELECT * FROM  vuelos WHERE CONCAT(ID,'',Aerolinea,Destino) LIKE '%" + valorBuscar + "%'";
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
-        modelo.addColumn("Asientos Disponibles");
-        modelo.addColumn("Asientos Totales");
         modelo.addColumn("Aerolinea");
         modelo.addColumn("Destino");
-        modelo.addColumn("Hora de Salida");
-        modelo.addColumn("Hora de Llegada");
+        modelo.addColumn("Hora de_ salida");
+        modelo.addColumn("Hora de llegada");
         modelo.addColumn("Costo");
-        
 
         tblRutas.setModel(modelo);
         //String consultaSQL = "SELECT * FROM tbl_usuarios ORDER BY id";
-        String data[] = new String[8];
+        String data[] = new String[6];
         Statement st;
         try {
             st = (Statement) cn.createStatement();
@@ -540,9 +562,7 @@ public class RutasAereas extends javax.swing.JFrame {
                 data[3] = rs.getString(4);
                 data[4] = rs.getString(5);
                 data[5] = rs.getString(6);
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                
+               
 
                 modelo.addRow(data);
             }
@@ -553,12 +573,13 @@ public class RutasAereas extends javax.swing.JFrame {
     }
 
     private void limpiarCampos() {
-        
+
         txtAerolinea.setText("");
         txtAsientosTotales.setText("");
-        txtCosto.setText("");
+        txtId.setText("");
         txtDestino.setText("");
         txtHoraLlegada.setText("");
-        txtHoraSalida.setText("");      
+        txtHoraSalida.setText("");
+        txtCosto.setText("");
     }
 }
